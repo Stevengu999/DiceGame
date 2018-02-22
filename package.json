@@ -16,7 +16,7 @@
 		"orientation": "portrait"
 	},
 	"scripts": {
-		"preinstall": "cd packages/dclib && npm i",
+		"preinstall": "cd packages/dclib && yarn",
 		"postinstall": "npm run favicons && npm run build && ipscend init",
 		"macos_fixes": "sudo ulimit -n 2200 && brew install watchman",
 		"start": "node scripts/start.js",
