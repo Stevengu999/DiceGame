@@ -45,9 +45,9 @@ module.exports = {
       appleIcon: true, // Create Apple touch icons. `boolean` or `{ offset, background }`
       appleStartup: true, // Create Apple startup images. `boolean` or `{ offset, background }`
       favicons: true, // Create regular favicons. `boolean`
-      firefox: true, // Create Firefox OS icons. `boolean` or `{ offset, background }`
+      firefox: false, // Create Firefox OS icons. `boolean` or `{ offset, background }`
       windows: true, // Create Windows 8 tile icons. `boolean` or `{ background }`
-      yandex: true, // Create Yandex browser icon. `boolean` or `{ background }`
+      yandex: false, // Create Yandex browser icon. `boolean` or `{ background }`
 
       // Create Opera Coast icon with offset 25%. `boolean` or `{ offset, background }`
       coast: { offset: 25 }
