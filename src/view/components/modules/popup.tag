@@ -45,10 +45,14 @@ import state from '../../state'
         document.querySelector('.blockchain-link').setAttribute('href', `https://ropsten.etherscan.io/tx/${info.channel.receipt.transactionHash}`)
       })
 
+      Lib.Game.Status
+        .on('connect::info', console.log)
+        .on('error', console.error)
+
       this.loading = true
     }
   </script>
-  
+
   <div class={popup:true, anim:loading}>
 	  <div class="popup-table">
 	    <span class="popup-text">Please, select deposit</span>
@@ -61,7 +65,7 @@ import state from '../../state'
           perentid="slider-deposit">
         </slider-module>
         <button
-          class="popup-but"  
+          class="popup-but"
           onclick="{connect}"
         >open channel</button>
 	  </div>
@@ -70,7 +74,7 @@ import state from '../../state'
     <span class="open-capt">Open game channel please waith...</span>
     <div class="open-status"></div>
   </div>
-  
+
   <style type="less">
     .popup {
       position: fixed;

@@ -10,7 +10,7 @@ export default new class Lib {
 
   createDApp (slug) {
     this.DCLib.on('ready', () => {
-      this.Game = new this.DCLib.DApp({slug: slug})
+      this.Game = new this.DCLib.DApp({slug: slug, debug: false})
     })
   }
 
