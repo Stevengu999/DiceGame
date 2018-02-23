@@ -1,17 +1,17 @@
 'use strict'
 
-const autoprefixer = require('autoprefixer')
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+const autoprefixer                  = require('autoprefixer')
+const path                          = require('path')
+const webpack                       = require('webpack')
+const HtmlWebpackPlugin             = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin      = require('case-sensitive-paths-webpack-plugin')
+const InterpolateHtmlPlugin         = require('react-dev-utils/InterpolateHtmlPlugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
-const eslintFormatter = require('react-dev-utils/eslintFormatter')
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
+const eslintFormatter               = require('react-dev-utils/eslintFormatter')
+const ModuleScopePlugin             = require('react-dev-utils/ModuleScopePlugin')
 
 const getClientEnvironment = require('./env')
-const paths = require('./paths')
+const paths                = require('./paths')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -345,34 +345,5 @@ if (process.env.enable_less) {
   })
 }
 
-// SASS loader
-if (process.env.enable_sass) {
-  webpack_dev_config.module.rules.push({
-    test: /\.(scss|sass)$/,
-    use: [
-      // creates style nodes from JS strings
-      { loader: 'style-loader' },
-      // translates CSS into CommonJS
-      { loader: 'css-loader' },
-      // compiles Sass to CSS
-      { loader: 'sass-loader' }
-    ]
-  })
-}
-
-// STYLUS loader
-if (process.env.enable_stylus) {
-  webpack_dev_config.module.rules.push({
-    test: /\.styl$/,
-    use: [
-      // creates style nodes from JS strings
-      { loader: 'style-loader' },
-      // translates CSS into CommonJS
-      { loader: 'css-loader' },
-      // compiles stylus
-      { loader: 'stylus-loader' }
-    ]
-  })
-}
 
 module.exports = webpack_dev_config

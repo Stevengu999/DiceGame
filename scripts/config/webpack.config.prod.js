@@ -1,19 +1,19 @@
 'use strict'
 
-const autoprefixer = require('autoprefixer')
-const fs = require('fs')
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+const autoprefixer            = require('autoprefixer')
+const fs                      = require('fs')
+const path                    = require('path')
+const webpack                 = require('webpack')
+const HtmlWebpackPlugin       = require('html-webpack-plugin')
+const ExtractTextPlugin       = require('extract-text-webpack-plugin')
+const ManifestPlugin          = require('webpack-manifest-plugin')
+const InterpolateHtmlPlugin   = require('react-dev-utils/InterpolateHtmlPlugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const eslintFormatter = require('react-dev-utils/eslintFormatter')
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
-const HtmlCriticalPlugin = require('html-critical-webpack-plugin')
+const eslintFormatter         = require('react-dev-utils/eslintFormatter')
+const ModuleScopePlugin       = require('react-dev-utils/ModuleScopePlugin')
+const HtmlCriticalPlugin      = require('html-critical-webpack-plugin')
 
-const paths = require('./paths')
+const paths                = require('./paths')
 const getClientEnvironment = require('./env')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -301,16 +301,16 @@ let webpack_prod_config = {
       inject: true,
       template: paths.appHtml,
       minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true
+        removeComments                : true,
+        collapseWhitespace            : true,
+        removeRedundantAttributes     : true,
+        useShortDoctype               : true,
+        removeEmptyAttributes         : true,
+        removeStyleLinkTypeAttributes : true,
+        keepClosingSlash              : true,
+        minifyJS                      : true,
+        minifyCSS                     : true,
+        minifyURLs                    : true
       }
     }),
 
@@ -388,26 +388,26 @@ let webpack_prod_config = {
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
+    fs  : 'empty',
+    net : 'empty',
+    tls : 'empty'
   }
 }
 
 if (!process.env.TRAVIS_BUILD) {
   webpack_prod_config.plugins.push(new HtmlCriticalPlugin({
     /* The path of the Webpack bundle */
-    base: paths.appBuild,
-    src: 'index.html',
-    dest: 'index.html',
+    base : paths.appBuild,
+    src  : 'index.html',
+    dest : 'index.html',
 
-    inline: true,
-    minify: true,
-    extract: true,
+    inline  : true,
+    minify  : true,
+    extract : true,
 
     /* iPhone 6 dimensions, use whatever you like */
-    width: 375,
-    height: 565,
+    width  : 375,
+    height : 565,
 
     penthouse: {
       blockJSRequests: false
@@ -431,36 +431,6 @@ if (process.env.enable_less) {
   })
 }
 
-// SASS loader
-if (process.env.enable_sass) {
-  webpack_prod_config.module.rules.push({
-    test: /\.(scss|sass)$/,
-    use: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        // translates CSS into CommonJS
-        { loader: 'css-loader' },
-        // compiles Sass to CSS
-        { loader: 'sass-loader' }
-      ]
-    })
-  })
-}
 
-// STYLUS loader
-if (process.env.enable_stylus) {
-  webpack_prod_config.module.rules.push({
-    test: /\.styl$/,
-    use: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        // translates CSS into CommonJS
-        { loader: 'css-loader' },
-        // compiles stylus
-        { loader: 'stylus-loader' }
-      ]
-    })
-  })
-}
 
 module.exports = webpack_prod_config
