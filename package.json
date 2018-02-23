@@ -16,7 +16,7 @@
 		"orientation": "portrait"
 	},
 	"scripts": {
-		"preinstall": "cd packages/dclib && yarn",
+		"preinstall": "npm run git:update && cd packages/dclib && yarn",
 		"postinstall": "npm run favicons && npm run build",
 		"macos_fixes": "sudo ulimit -n 2200 && brew install watchman",
 		"start": "node scripts/start.js",
@@ -30,9 +30,10 @@
 		"favicons": "node scripts/favicons.js",
 		"build": "node scripts/build.js",
 		"check_build": "serve -s build -p 9000",
-		"predeploy": "npm run eslint & npm run lint-staged &npm run coverage",
+		"predeploy": "npm run eslint & npm run lint-staged & npm run coverage",
 		"deploy": "echo 'Deploy to IPFS \n this can take up to several minutes...\n' && ipscend publish",
-		"deploy_ssh": "node scripts/ssh_deploy.js"
+		"deploy_ssh": "node scripts/ssh_deploy.js",
+		"git:update": "git submodule update --init --recursive"
 	},
 	"pre-commit": [
 		"lint-staged"
@@ -56,7 +57,6 @@
 		]
 	},
 	"dependencies": {
-		"hammerjs": "^2.0.8",
 		"jquery": "^3.2.1",
 		"pug": "^2.0.0-rc.4",
 		"riot": "^3.6.1",
